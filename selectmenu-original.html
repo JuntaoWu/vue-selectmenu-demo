@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="us">
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery UI Select Menu Example Page</title>
+    <link href="bower_components/jquery-ui/themes/base/all.css" rel="stylesheet" />
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <style>
+        .panel-demo {
+            width: 500px;
+            height: 200px;
+            margin: 15px;
+            padding: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="panel panel-default panel-demo">
+        <div id="app" class="form-inline">
+            <select id="selectmenu" v-model="selectedMessage" class="form-control">
+            <option value="1">Slower Long text,1110</option>
+            <option value="2">Slow,22201</option>
+            <option value="3">Medium</option>
+            <option value="4">Fast</option>
+            <option value="5">Faster</option>
+        </select>
+            <input v-model="selectedMessage" class="form-control" />
+        </div>
+    </div>
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/vue/dist/vue.js"></script>
+    <script>
+        $.widget( "custom.splitselectmenu", $.ui.selectmenu, {
+            _renderItem: function(ul, item) {
+                var li = $( "<li>" ),
+                    wrapper = $( "<div>", {
+                        title: item.element.attr( "title" )
+                    } );
+
+                if ( item.disabled ) {
+                    this._addClass( li, null, "ui-state-disabled" );
+                }
+                let labels = item.label.split(",");
+                let html = `<div style="width: 60%; display: inline-block;">
+                                ${labels[0] || ""}
+                            </div>
+                            <div style="width: 30%; display: inline-block;">
+                                ${labels[1] || ""}
+                            </div>`;
+                
+                wrapper.html(html);
+
+                return li.append( wrapper ).appendTo( ul );
+            }
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                selectedMessage: "5"
+            },
+            watch: {
+                selectedMessage: function(val) {
+                    $("#selectmenu").val(val).splitselectmenu('refresh');
+                }
+            }
+        });
+
+        
+        $( "#selectmenu" ).splitselectmenu({
+            change: function(event, ui) {
+                app.$data.selectedMessage = this.value;
+            }
+        });
+</script>
+</body>
+
+</html>

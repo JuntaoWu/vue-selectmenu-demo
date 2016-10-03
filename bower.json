@@ -1,0 +1,20 @@
+{
+  "name": "vue-selectmenu",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "vue": "^2.0.1",
+    "jquery-ui": "^1.12.1",
+    "jquery": "^3.1.1"
+  }
+}
