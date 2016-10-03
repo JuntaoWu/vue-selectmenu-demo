@@ -21,12 +21,12 @@
     <div class="panel panel-default panel-demo">
         <div id="app" class="form-inline">
             <select id="selectmenu" v-model="selectedMessage" class="form-control">
-            <option value="1">Slower Long text,1110</option>
-            <option value="2">Slow,22201</option>
-            <option value="3">Medium</option>
-            <option value="4">Fast</option>
-            <option value="5">Faster</option>
-        </select>
+                <option value="1">Slower Long text,1110</option>
+                <option value="2">Slow,22201</option>
+                <option value="3">Medium</option>
+                <option value="4">Fast</option>
+                <option value="5">Faster</option>
+            </select>
             <input v-model="selectedMessage" class="form-control" />
         </div>
     </div>
@@ -71,7 +71,6 @@
             }
         });
 
-        
         $( "#selectmenu" ).splitselectmenu({
             change: function(event, ui) {
                 app.$data.selectedMessage = this.value;
